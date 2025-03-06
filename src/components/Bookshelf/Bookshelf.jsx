@@ -6,10 +6,10 @@ const Bookshelf = () => {
         { title: 'Fourth Wing', author: 'Rebecca Yarros' },
         { title: 'The Lion, the Witch and the Wardrobe', author: 'C.S. Lewis' },
     ]);
-    const [newbook, setNewBook] = useState([
-        { title: '', author: '' },
-        { title: '', author: '' },
-    ]);
+
+    const [newbook, setNewBook] = useState(
+        { title: '', author: '' }
+    );
 
     const handleInputChange = (event) => {
         setNewBook({ ...newbook, [event.target.name]: event.target.value });
@@ -17,6 +17,8 @@ const Bookshelf = () => {
 
     const handleSubmit = (event) => {
         event.preventDefault();
+        setBooks([...books, newbook]);
+        setNewBook({ title: '', author: '' });
     };
 
 
@@ -45,6 +47,7 @@ const Bookshelf = () => {
                             onChange={handleInputChange}
                         />
                     </div>
+                    <button type="submit" disabled={!Object.values(newbook).every(Boolean)}>add book</button>
                 </form>
             </div>
             <div className="bookCardsDiv">{/* Book cards will display here */}</div>
@@ -52,3 +55,5 @@ const Bookshelf = () => {
 
     );
 };
+
+export default Bookshelf;
