@@ -21,7 +21,6 @@ const Bookshelf = () => {
         setNewBook({ title: '', author: '' });
     };
 
-
     return (
         <div className="bookshelfDiv">
             <div className="formDiv">
@@ -50,9 +49,10 @@ const Bookshelf = () => {
                     <button type="submit" disabled={!Object.values(newbook).every(Boolean)}>add book</button>
                 </form>
             </div>
-            <div className="bookCardsDiv">{/* Book cards will display here */}</div>
+            <div className="bookCardsDiv">{books.map((book, index) => (
+                <div className='bookCard' key={index}><h4>{book.title}</h4><p>by {book.author}</p></div>
+            ))}</div>
         </div>
-
     );
 };
 
